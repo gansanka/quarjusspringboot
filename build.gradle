@@ -1,0 +1,44 @@
+plugins {
+    id 'java'
+    id 'io.quarkus'
+}
+
+repositories {
+     mavenLocal()
+     mavenCentral()
+}
+
+dependencies {
+    implementation 'io.quarkus:quarkus-spring-boot-properties'
+    implementation 'io.quarkus:quarkus-spring-di'
+    implementation 'io.quarkus:quarkus-spring-web'
+    implementation 'io.quarkus:quarkus-spring-security'
+    implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
+    implementation 'io.quarkus:quarkus-resteasy'
+    implementation 'io.quarkus:quarkus-amazon-lambda'
+    compile group: 'org.json', name: 'json', version: '20190722'
+
+    testImplementation 'io.quarkus:quarkus-junit5'
+    testImplementation 'io.rest-assured:rest-assured'
+}
+
+group 'org.demo'
+version '1.0.0-SNAPSHOT'
+
+compileJava {
+    options.encoding = 'UTF-8'
+    options.compilerArgs << '-parameters'
+}
+
+compileTestJava {
+    options.encoding = 'UTF-8'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+test {
+    systemProperty "java.util.logging.manager", "org.jboss.logmanager.LogManager"
+}
