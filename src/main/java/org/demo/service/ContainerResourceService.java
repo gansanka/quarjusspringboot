@@ -11,13 +11,13 @@ public class ContainerResourceService implements IResourceService {
 
   @Override
   public String getResourceType() {
-    return "Serverless";
+    return "Container";
   }
 
   @Override
   public JSONObject getResource() {
     JSONObject json = new JSONObject();
-    json.put("type", "serverless");
+    json.put("type", "container");
     json.put("cloudProvider", "AWS");
     return json;
   }
