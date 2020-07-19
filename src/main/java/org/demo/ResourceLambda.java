@@ -29,8 +29,9 @@ public class ResourceLambda implements RequestHandler<APIGatewayV2HTTPEvent, Str
     serviceList.add(defaultService);
     serviceList.add(containerService);
 
-    System.out.println("Input ::: " + input.getQueryStringParameters());
-    IResourceService service = serviceList.stream().filter(item -> item.getResourceType().equalsIgnoreCase(""))
+    String type = input.getQueryStringParameters().get("getType");
+    System.out.println("Input ::: " + type);
+    IResourceService service = serviceList.stream().filter(item -> item.getResourceType().equalsIgnoreCase(type))
         .findFirst().orElse(defaultService);
 
     return service.getResource().toString();
